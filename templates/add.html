@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Sushi 🍣</title>
+    <title>Add Sushi 🍣</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -28,40 +28,40 @@
 <div class="container mt-5">
 
     <div class="card shadow p-4 col-md-6 mx-auto">
-        <h2 class="text-center mb-4">✏️ Edit Sushi 🍣</h2>
+        <h2 class="text-center mb-4">➕ Add New Sushi 🍣</h2>
 
         <form method="POST">
 
             <div class="mb-3">
                 <label class="form-label">ชื่อ</label>
-                <input name="name" value="{{ sushi[1] }}" class="form-control">
+                <input name="name" class="form-control" placeholder="เช่น Salmon Nigiri" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">ราคา</label>
-                <input name="price" value="{{ sushi[2] }}" class="form-control">
+                <input name="price" type="number" class="form-control" placeholder="เช่น 120" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">จำนวน</label>
-                <input name="stock" value="{{ sushi[3] }}" class="form-control">
+                <input name="stock" type="number" class="form-control" placeholder="เช่น 10" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">หมวดหมู่</label>
-                <select name="category_id" class="form-control">
+                <select name="category_id" class="form-control" required>
                     {% for c in categories %}
-                    <option value="{{ c[0] }}" {% if c[1] == sushi[4] %}selected{% endif %}>
-                        {{ c[1] }}
-                    </option>
+                        <option value="{{ c[0] }}">{{ c[1] }}</option>
                     {% endfor %}
                 </select>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">รูป (URL)</label>
-                <input id="imgInput" name="image" value="{{ sushi[5] }}" class="form-control">
-                <img id="preview" src="{{ sushi[5] }}" class="preview-img"
+                <input id="imgInput" name="image" class="form-control" placeholder="วางลิงก์รูปที่นี่" required>
+                
+                <img id="preview" class="preview-img"
+                     src="https://via.placeholder.com/300x200?text=Preview"
                      onerror="this.src='https://via.placeholder.com/300x200?text=No+Image';">
             </div>
 
@@ -76,7 +76,6 @@
 </div>
 
 <script>
-    // preview รูปแบบ realtime
     document.getElementById("imgInput").addEventListener("input", function() {
         document.getElementById("preview").src = this.value;
     });
